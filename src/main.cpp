@@ -15,7 +15,7 @@ int main()
         {
             std::getline( std::cin, inputData );
 
-            if( inputData == QUIT_COMMAND )
+            if( inputData == CS::QUIT_COMMAND )
             {
                 std::cout<<"Stop"<<std::endl;
                 break;

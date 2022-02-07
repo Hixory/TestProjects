@@ -22,12 +22,12 @@ namespace LR
 
     bool Lexer::isNumber( std::string& stringToken ) const
     {
-        if( stringToken[0] == QUOTES && stringToken[stringToken.size() - 1] == QUOTES )
+        if( stringToken[0] == CS::QUOTES && stringToken[stringToken.size() - 1] == CS::QUOTES )
         {
             stringToken = stringToken.substr(1, stringToken.size() - 2 );
         }
 
-        return std::regex_match( stringToken, NUMBER_REGEX );
+        return std::regex_match( stringToken, CS::NUMBER_REGEX );
     }
 
     TN::Token Lexer:: defineToken( const char* token ) const
@@ -49,10 +49,10 @@ namespace LR
 
     void Lexer::buildExpressionsOrder( std::string& input )
     {
-        auto startExpr = input.find( EXPR_START );
+        auto startExpr = input.find( CS::EXPR_START );
         if( startExpr !=  std::string::npos )
         {
-            auto endExpr = input.rfind( EXPR_END );
+            auto endExpr = input.rfind( CS::EXPR_END );
             if( endExpr !=  std::string::npos )
             {
                 std::string buffer = input.substr( startExpr + 1, endExpr - startExpr - 1 );

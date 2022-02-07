@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <regex>
-namespace
+namespace CS
 {
     const std::string QUIT_COMMAND("quit" );
     const std::regex NUMBER_REGEX( "[(-|+)|][0-9]+" );
