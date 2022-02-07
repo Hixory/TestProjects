@@ -22,10 +22,6 @@ static const std::unordered_map<std::string, CommandType> COMMAND_TYPES { {"add"
                                                                           {"mult", CommandType::MULT },
                                                                           {"concat", CommandType::CONCAT } };
 
-static const std::unordered_map<const char*, CommandType> COMMAND_TOKEN_TYPES { {"add", CommandType::ADD },
-                                                                                {"sub", CommandType::SUB },
-                                                                                {"mult", CommandType::MULT },
-                                                                                {"concat", CommandType::CONCAT } };
 
 template<CommandType type>
 class Command: public ICommand

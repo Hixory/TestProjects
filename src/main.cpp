@@ -21,7 +21,7 @@ int main()
                 break;
             }
             lexer.setInputData( std::move( inputData ) );
-            auto tokens = lexer.getTokens();
+            lexer.getTokens();
             continue;
         }
         catch( std::logic_error& ex )

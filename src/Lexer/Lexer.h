@@ -15,13 +15,13 @@ public:
     ~Lexer() = default;
 
 public:
-    std::list<TN::Token> getTokens();
+    void getTokens();
     void setInputData( std::string && input );
 
 private:
-    TN::Token defineToken( const char* token );
-    bool isCommand( const char* token );
-    bool isNumber( std::string& stringToken );
+    TN::Token defineToken( const char* token ) const;
+    bool isCommand( const std::string& stringToken ) const;
+    bool isNumber( std::string& stringToken ) const;
     void calculate( std::list<TN::Token>& tokens );
     void buildExpressionsOrder( std::string& input );
 

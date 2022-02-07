@@ -8,9 +8,9 @@ add_executable(Interpreter src/main.cpp)
 
 add_library(lexer src/Lexer/Lexer.cpp
             src/Lexer/Token.h
-            src/Command/Command.cpp
             src/Command/Command.h
-            src/Command/ICommand.h src/Command/ICommand.cpp)
+            src/Command/ICommand.h
+            src/Command/ICommand.cpp)
 target_include_directories(lexer
         PUBLIC
             "${CMAKE_CURRENT_SOURCE_DIR}"

@@ -1,0 +1,4 @@
+/home/testuser/Repos/TestProjects/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/testuser/Repos/TestProjects/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/testuser/Repos/TestProjects/cmake-build-debug/CMakeFiles/lexer.dir
+/home/testuser/Repos/TestProjects/cmake-build-debug/CMakeFiles/Interpreter.dir

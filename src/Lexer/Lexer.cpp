@@ -1,9 +1,9 @@
 #include <cstring>
-#include "Lexer.h"
-#include "src/Constrains.h"
 #include <iostream>
 #include <regex>
+#include "Lexer.h"
 #include "src/Command/Command.h"
+#include "src/Constrains.h"
 
 namespace LR
 {
@@ -12,32 +12,28 @@ namespace LR
         m_inputData = std::move( input );
     }
 
-    bool Lexer::isCommand( const char* token )
+    bool Lexer::isCommand( const std::string& stringToken ) const
     {
-        for( const auto& [name, type] : CD::COMMAND_TOKEN_TYPES )
-        {
-            if( !strcmp( name, token ) )
-            {
-                return true;
-            }
-        }
+        if( CD::COMMAND_TYPES.find( stringToken ) != CD::COMMAND_TYPES.end() )
+            return true;
+
         return false;
     }
 
-    bool Lexer::isNumber( std::string& stringToken )
+    bool Lexer::isNumber( std::string& stringToken ) const
     {
         if( stringToken[0] == QUOTES && stringToken[stringToken.size() - 1] == QUOTES )
         {
             stringToken = stringToken.substr(1, stringToken.size() - 2 );
         }
 
-        return std::regex_match( stringToken, std::regex( "[(-|+)|][0-9]+" ) );
+        return std::regex_match( stringToken, NUMBER_REGEX );
     }
 
-    TN::Token Lexer:: defineToken( const char* token )
+    TN::Token Lexer:: defineToken( const char* token ) const
     {
         std::string strToken( token );
-        if( isCommand( token ) )
+        if( isCommand( strToken ) )
         {
             return {TN::TokenIdentity::Command, strToken };
         }
@@ -77,7 +73,7 @@ namespace LR
         }
     }
 
-    std::list<TN::Token> Lexer::getTokens()
+    void Lexer::getTokens()
     {
         buildExpressionsOrder( m_inputData );
         std::list<TN::Token> result;
@@ -91,9 +87,7 @@ namespace LR
             result.emplace_back( std::move( tokenType ) );
             token = std::strtok( nullptr, " " );
         }
-
         calculate( result );
-        return result;
     }
 
     void Lexer::calculate( std::list<TN::Token>& tokens )
@@ -133,7 +127,6 @@ namespace LR
 
         std::string result;
         auto it = commands.begin();
-
         while( it != commands.end() )
         {
             if( !result.empty() )
@@ -149,7 +142,7 @@ namespace LR
             throw std::logic_error( "Wrong syntax" );
         }
 
-        std::cout<<"Result="<<result<<std::endl;
+        std::cout<<"Result: "<<result<<std::endl;
     }
 
 
